@@ -17,3 +17,6 @@ CMD CHALLENGE is a pretty cool game challenging you on Bash skills. Everything i
 | 0-first_9_tasks.png   | first 9 tasks   |
 | 1-next-9-tasks.png    | second 9 tasks   |
 | 2-last-9-tasks.png   | third 9 tasks   |
+
+##Author:
+- - -
