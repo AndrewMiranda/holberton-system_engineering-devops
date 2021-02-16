@@ -1,3 +1,3 @@
-<h1><center>Command line for the win </center></h1>
+<h1 style="text align:center;">Command line for the win</h1>
 
 ___
