@@ -1,14 +1,35 @@
 #!/usr/bin/python3
-"""Returns to-do list information for a given employee ID."""
+"""
+return all of the information about an user_id
+"""
 import requests
-import sys
+from sys import argv
+
+
+def get_information(employee_id):
+    """returns information about his/her TODO list progress.
+    """
+    response = requests.get(
+        'https://jsonplaceholder.typicode.com/users/{}'.format(employee_id))
+    response_json = response.json()  # retrieve a dict
+
+    response_todos = requests.get(
+        'https://jsonplaceholder.typicode.com/todos?userId={}'.format(
+            employee_id))
+    response_json_todos = response_todos.json()  # retrieve a dict
+
+    total_tasks = len(response_json_todos)
+    done_tasks = 0
+    tasks_titles = ""
+    for task in response_json_todos:
+        if task.get('completed') is True:
+            done_tasks += 1
+            tasks_titles += "\t {}\n".format(task.get('title'))
+
+    print("Employee {} is done with tasks({}/{}):".format(
+        response_json.get('name'), done_tasks, total_tasks))
+    print(tasks_titles[:-1])
+
 
 if __name__ == "__main__":
-    url = "https://jsonplaceholder.typicode.com/"
-    user = requests.get(url + "users/{}".format(sys.argv[1])).json()
-    todos = requests.get(url + "todos", params={"userId": sys.argv[1]}).json()
-
-    completed = [t.get("title") for t in todos if t.get("completed") is True]
-    print("Employee {} is done with tasks({}/{}):".format(
-        user.get("name"), len(completed), len(todos)))
-    [print("\t {}".format(c)) for c in completed]
+    get_information(argv[1])
