@@ -8,8 +8,8 @@ frontend haproxy_balancer
     
 backend webservers
     balance roundrobin
-    server 2525-web-01 35.196.52.46:80 check
-    server 2525-web-02 18.232.176.193:80 check
+    server 2168-web-01 35.231.233.84:80 check
+    server 2168-web-01 34.207.112.220:80 check
 "
 apt-get -y install software-properties-common
 add-apt-repository -y ppa:vbernat/haproxy-2.0
